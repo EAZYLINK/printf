@@ -4,6 +4,8 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <stddef.h>
+#include <string.h>
+#include <unistd.h>
 
 typedef struct printer
 {
@@ -17,5 +19,6 @@ int print_float(va_list arg);
 int print_string(va_list);
 int _putchar(char c);
 int _printf(const char *format, ...);
+int (*cmp_func(const char a))(va_list);
 
 #endif /*MAIN_H*/
