@@ -1,277 +1,100 @@
 #include "main.h"
 
-/**
- * get_flags - Calculates active flags
- * @format: Formatted string in which to print the arguments
- * @i: take a parameter.
- * Return: Flags:
- */
-int get_flags(const char *format, int *i)
-{
-/* - + 0 # ' ' */
-/* 1 2 4 8  16 */
-int j, curr_i;
-int flags = 0;
-const char FLAGS_CH[] = {'-', '+', '0', '#', ' ', '\0'};
-const int FLAGS_ARR[] = {F_MINUS, F_PLUS, F_ZERO, F_HASH, F_SPACE, 0};
-
-for (curr_i = *i + 1; format[curr_i] != '\0'; curr_i++)
-{
-for (j = 0; FLAGS_CH[j] != '\0'; j++)
-    if (format[curr_i] == FLAGS_CH[j])
-    {
-        flags |= FLAGS_ARR[j];
-        break;
-    }
-
-if (FLAGS_CH[j] == 0)
-    break;
-}
-
-*i = curr_i - 1;
-
-return (flags);
-}
+unsigned int convert_c(va_list args, buffer_t *output,
+		unsigned char flags, int wid, int prec, unsigned char len);
+unsigned int convert_percent(va_list args, buffer_t *output,
+		unsigned char flags, int wid, int prec, unsigned char len);
+unsigned int convert_p(va_list args, buffer_t *output,
+		unsigned char flags, int wid, int prec, unsigned char len);
 
 /**
- * print_reverse - Prints reverse string.
- * @types: Lista of arguments
- * @buffer: Buffer array to handle print
- * @flags:  Calculates active flags
- * @width: get width
- * @precision: Precision specification
- * @size: Size specifier
- * Return: Numbers of chars printed
+ * convert_c - Converts an argument to an unsigned char and
+ *             stores it to a buffer contained in a struct.
+ * @args: A va_list pointing to the argument to be converted.
+ * @flags: Flag modifiers.
+ * @wid: A width modifier.
+ * @prec: A precision modifier.
+ * @len: A length modifier.
+ * @output: A buffer_t struct containing a character array.
+ *
+ * Return: The number of bytes stored to the buffer.
  */
-
-int print_reverse(va_list types, char buffer[],
-int flags, int width, int precision, int size)
+unsigned int convert_c(va_list args, buffer_t *output,
+		unsigned char flags, int wid, int prec, unsigned char len)
 {
-char *str;
-int i, count = 0;
+	char c;
+	unsigned int ret = 0;
 
-UNUSED(buffer);
-UNUSED(flags);
-UNUSED(width);
-UNUSED(size);
+	(void)prec;
+	(void)len;
 
-str = va_arg(types, char *);
+	c = va_arg(args, int);
 
-if (str == NULL)
-{
-UNUSED(precision);
+	ret += print_width(output, ret, flags, wid);
+	ret += _memcpy(output, &c, 1);
+	ret += print_neg_width(output, ret, flags, wid);
 
-str = ")Null(";
-}
-for (i = 0; str[i]; i++)
-;
-
-for (i = i - 1; i >= 0; i--)
-{
-char z = str[i];
-
-write(1, &z, 1);
-count++;
-}
-return (count);
+	return (ret);
 }
 
 /**
- * print_rot13string - Print a string in rot13.
- * @types: Lista of arguments
- * @buffer: Buffer array to handle print
- * @flags:  Calculates active flags
- * @width: get width
- * @precision: Precision specification
- * @size: Size specifier
- * Return: Numbers of chars printed
+ * convert_percent - Stores a percent sign to a
+ *                   buffer contained in a struct.
+ * @args: A va_list pointing to the argument to be converted.
+ * @flags: Flag modifiers.
+ * @wid: A width modifier.
+ * @prec: A precision modifier.
+ * @len: A length modifier.
+ * @output: A buffer_t struct containing a character array.
+ *
+ * Return: The number of bytes stored to the buffer (always 1).
  */
-int print_rot13string(va_list types, char buffer[],
-int flags, int width, int precision, int size)
+unsigned int convert_percent(va_list args, buffer_t *output,
+		unsigned char flags, int wid, int prec, unsigned char len)
 {
-char x;
-char *str;
-unsigned int i, j;
-int count = 0;
-char in[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-char out[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
+	char percent = '%';
+	unsigned int ret = 0;
 
-str = va_arg(types, char *);
-UNUSED(buffer);
-UNUSED(flags);
-UNUSED(width);
-UNUSED(precision);
-UNUSED(size);
+	(void)args;
+	(void)prec;
+	(void)len;
 
-if (str == NULL)
-str = "(AHYY)";
-for (i = 0; str[i]; i++)
-{
-for (j = 0; in[j]; j++)
-{
-if (in[j] == str[i])
-{
-x = out[j];
-write(1, &x, 1);
-count++;
-break;
-}
-}
-if (!in[j])
-{
-x = str[i];
-write(1, &x, 1);
-count++;
-}
-}
-return (count);
+	ret += print_width(output, ret, flags, wid);
+	ret += _memcpy(output, &percent, 1);
+	ret += print_neg_width(output, ret, flags, wid);
+
+	return (ret);
 }
 
 /**
- * print_percent - Prints a percent sign
- * @types: Lista of arguments
- * @buffer: Buffer array to handle print
- * @flags:  Calculates active flags
- * @width: get width.
- * @precision: Precision specification
- * @size: Size specifier
- * Return: Number of chars printed
+ * convert_p - Converts the address of an argument to hex and
+ *             stores it to a buffer contained in a struct.
+ * @args: A va_list pointing to the argument to be converted.
+ * @flags: Flag modifiers.
+ * @wid: A width modifier.
+ * @prec: A precision modifier.
+ * @len: A length modifier.
+ * @output: A buffer_t struct containing a character array.
+ *
+ * Return: The number of bytes stored to the buffer.
  */
-int print_percent(va_list types, char buffer[],
-int flags, int width, int precision, int size)
+unsigned int convert_p(va_list args, buffer_t *output,
+		unsigned char flags, int wid, int prec, unsigned char len)
 {
-UNUSED(types);
-UNUSED(buffer);
-UNUSED(flags);
-UNUSED(width);
-UNUSED(precision);
-UNUSED(size);
-return (write(1, "%%", 1));
-}
+	char *null = "(nil)";
+	unsigned long int address;
+	unsigned int ret = 0;
 
-/**
- * print_pointer - Prints the value of a pointer variable
- * @types: List a of arguments
- * @buffer: Buffer array to handle print
- * @flags:  Calculates active flags
- * @width: get width
- * @precision: Precision specification
- * @size: Size specifier
- * Return: Number of chars printed.
- */
-int print_pointer(va_list types, char buffer[],
-int flags, int width, int precision, int size)
-{
-char extra_c = 0, padd = ' ';
-int ind = BUFF_SIZE - 2, length = 2, padd_start = 1; /* length=2, for '0x' */
-unsigned long num_addrs;
-char map_to[] = "0123456789abcdef";
-void *addrs = va_arg(types, void *);
+	(void)len;
 
-UNUSED(width);
-UNUSED(size);
+	address = va_arg(args, unsigned long int);
+	if (address == '\0')
+		return (_memcpy(output, null, 5));
 
-if (addrs == NULL)
-return (write(1, "(nil)", 5));
+	flags |= 32;
+	ret += convert_ubase(output, address, "0123456789abcdef",
+			flags, wid, prec);
+	ret += print_neg_width(output, ret, flags, wid);
 
-buffer[BUFF_SIZE - 1] = '\0';
-UNUSED(precision);
-
-num_addrs = (unsigned long)addrs;
-
-while (num_addrs > 0)
-{
-buffer[ind--] = map_to[num_addrs % 16];
-num_addrs /= 16;
-length++;
-}
-
-if ((flags & F_ZERO) && !(flags & F_MINUS))
-padd = '0';
-if (flags & F_PLUS)
-extra_c = '+', length++;
-else if (flags & F_SPACE)
-extra_c = ' ', length++;
-
-ind++;
-
-/*return (write(1, &buffer[i], BUFF_SIZE - i - 1));*/
-return (write_pointer(buffer, ind, length,
-width, flags, padd, extra_c, padd_start));
-}
-
-/**
- * print_non_printable - Prints ascii codes in hexa of non printable chars
- * @types: Lista of arguments
- * @buffer: Buffer array to handle print
- * @flags:  Calculates active flags
- * @width: get width
- * @precision: Precision specification
- * @size: Size specifier
- * Return: Number of chars printed
- */
-int print_non_printable(va_list types, char buffer[],
-int flags, int width, int precision, int size)
-{
-int i = 0, offset = 0;
-char *str = va_arg(types, char *);
-
-UNUSED(flags);
-UNUSED(width);
-UNUSED(precision);
-UNUSED(size);
-
-if (str == NULL)
-return (write(1, "(null)", 6));
-
-while (str[i] != '\0')
-{
-if (is_printable(str[i]))
-buffer[i + offset] = str[i];
-else
-offset += append_hexa_code(str[i], buffer, i + offset);
-
-i++;
-}
-
-buffer[i + offset] = '\0';
-
-return (write(1, buffer, i + offset));
-}
-
-/**
- * print_reverse - Prints reverse string.
- * @types: Lista of arguments
- * @buffer: Buffer array to handle print
- * @flags:  Calculates active flags
- * @width: get width
- * @precision: Precision specification
- * @size: Size specifier
- * Return: Numbers of chars printed
- */
-
-int print_reverse(va_list types, char buffer[],
-int flags, int width, int precision, int size)
-{
-char *str;
-int i, count = 0;
-UNUSED(buffer);
-UNUSED(flags);
-UNUSED(width);
-UNUSED(size);
-str = va_arg(types, char *);
-if (str == NULL)
-{
-UNUSED(precision);
-str = ")Null(";
-}
-for (i = 0; str[i]; i++)
-;
-for (i = i - 1; i >= 0; i--)
-{
-char z = str[i];
-write(1, &z, 1);
-count++;
-}
-return (count);
+	return (ret);
 }
