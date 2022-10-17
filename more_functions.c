@@ -39,7 +39,7 @@ int i, count = 0;
 char *result;
 char *s = va_arg(l, char *);
 (void)print;
-if(!s)
+if (!s)
 return (_puts("(null)"));
 for (i = 0; s[i]; i++)
 {
@@ -80,7 +80,6 @@ return (i);
 
 /**
  * print_rot13 - print rot13
- * 
  * @l: variable list
  * @print: parameter
  * Return: int
@@ -119,35 +118,4 @@ int print_percent(va_list l, flags_t *print)
 (void)l;
 (void)print;
 return (_putchar('%'));
-}
-
-/**
- * get_print - Get the print object
- * @s: character format
- * Return: integer
- */
-int (*get_print(char s))(va_list, flags_t *)
-{
-printer_t func[] = {
-{'i', print_int},
-{'s', print_string},
-{'c', print_char},
-{'d', print_int},
-{'u', print_unsigned},
-{'x', print_hex},
-{'X', print_hex_big},
-{'b', print_binary},
-{'o', print_octal},
-{'R', print_rot13},
-{'r', print_rev},
-{'S', print_bigS},
-{'p', print_address},
-{'%', print_percent}
-};
-int flags = 14;
-register int i;
-for (i = 0; i < flags; i++)
-if (func[i].c == s)
-return (func[i].print);
-return (NULL);
 }

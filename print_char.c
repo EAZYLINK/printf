@@ -9,7 +9,7 @@
 
 int print_char(va_list l, flags_t *print)
 {
-char c = va_arg(l, int); 
+char c = va_arg(l, int);
 (void)print;
 _putchar(c);
 return (1);

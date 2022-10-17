@@ -2,7 +2,7 @@
 
 /**
  * print_int - print integer
- * @l: variable list 
+ * @l: variable list
  * @print: parameter
  * Return: int
  */

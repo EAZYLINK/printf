@@ -12,6 +12,6 @@ char *str;
 str = va_arg(l, char *);
 (void)print;
 if (!str)
-    str = "(null)";
+str = "(null)";
 return (_puts(str));
 }
