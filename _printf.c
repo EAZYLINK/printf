@@ -41,20 +41,20 @@ tmp = 0;
 flags = handle_flags(format + i + 1, &tmp);
 wid = handle_width(args, format + i + tmp + 1, &tmp);
 prec = handle_precision(args, format + i + tmp + 1,
-        &tmp);
+&tmp);
 len = handle_length(format + i + tmp + 1, &tmp);
 
 f = handle_specifiers(format + i + tmp + 1);
 if (f != NULL)
 {
-    i += tmp + 1;
-    ret += f(args, output, flags, wid, prec, len);
-    continue;
+i += tmp + 1;
+ret += f(args, output, flags, wid, prec, len);
+continue;
 }
 else if (*(format + i + tmp + 1) == '\0')
 {
-    ret = -1;
-    break;
+ret = -1;
+break;
 }
 }
 ret += _memcpy(output, (format + i), 1);
