@@ -26,6 +26,7 @@ ptr++;
 if (*ptr == '%')
 {
 count += _putchar('%');
+continue;
 } while (get_flag(*ptr, &flags));
 ptr++;
 func = get_print(*ptr);
