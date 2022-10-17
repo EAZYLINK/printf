@@ -79,9 +79,7 @@ return (_puts(str));
 
 /**
  * print_num - print numbers
- * 
- * @l: variable list 
- * @print: parameter
+ * @n: parameter 
  * Return: int 
  */
 void print_num(int n)
@@ -101,8 +99,7 @@ _putchar((num % 10) + '0');
 
 /**
  * count_digit - counts the number of digit
- * 
- * @n: integer 
+ * @i: integer 
  * Return: int 
  */
 int count_digit(int i)
@@ -266,17 +263,17 @@ int i = 0;
 switch (s)
 {
 case '+':
-    print->plus = 1;
-    i = 1;
-    break;
+print->plus = 1;
+i = 1;
+break;
 case ' ':
-    print->space = 1;
-    i = 1;
-    break;
+print->space = 1;
+i = 1;
+break;
 case '#':
-    print->hash = 1;
-    i = 1;
-    break;
+print->hash = 1;
+i = 1;
+break;
 }
 return (i);
 }
@@ -382,25 +379,25 @@ return (_putchar('%'));
  * get_print - Get the print object
  * 
  * @s: character format 
- * @Return: int(*)(va_list, flags_t*) 
+ * Return: integer
  */
-int(*get_print(char s))(va_list, flags_t *)
+int (*get_print(char s))(va_list, flags_t *)
 {
 printer_t func[] = {
-    {'i', print_int},
-    {'s', print_string},
-    {'c', print_char},
-    {'d', print_int},
-    {'u', print_unsigned},
-    {'x', print_hex},
-    {'X', print_hex_big},
-    {'b', print_binary},
-    {'o', print_octal},
-    {'R', print_rot13},
-    {'r', print_rev},
-    {'S', print_bigS},
-    {'p', print_address},
-    {'%', print_percent}
+{'i', print_int},
+{'s', print_string},
+{'c', print_char},
+{'d', print_int},
+{'u', print_unsigned},
+{'x', print_hex},
+{'X', print_hex_big},
+{'b', print_binary},
+{'o', print_octal},
+{'R', print_rot13},
+{'r', print_rev},
+{'S', print_bigS},
+{'p', print_address},
+{'%', print_percent}
 };
 int flags = 14;
 register int i;
