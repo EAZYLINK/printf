@@ -17,9 +17,9 @@
  */
 typedef struct  flags
 {
-  int plus;
-  int space;
-  int hash;
+int plus;
+int space;
+int hash;
 } flags_t;
 
 /**
@@ -29,8 +29,8 @@ typedef struct  flags
  */
 typedef struct printer
 {
-  char c;
-  int (*print)(va_list arg, flags_t *f); 
+char c;
+int (*print)(va_list arg, flags_t *f);
 } printer_t;
 
 /* print-nums */
