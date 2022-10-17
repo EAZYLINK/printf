@@ -2,15 +2,14 @@
 
 /**
  * print_char - print character
- * 
- * @l: variable list 
+ * @l: variable list
  * @print: parameter
- * Return: int 
+ * Return: int
  */
 
 int print_char(va_list l, flags_t *print)
 {
-char c = va_arg(l, int);    
+char c = va_arg(l, int); 
 (void)print;
 _putchar(c);
 return (1);

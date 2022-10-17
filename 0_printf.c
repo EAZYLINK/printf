@@ -14,7 +14,7 @@ va_list list;
 flags_t flags = {0, 0, 0};
 register int count = 0;
 va_start(list, format);
-if(!format || (format[0] == '%' && !format[1]))
+if (!format || (format[0] == '%' && !format[1]))
 return (-1);
 if (format[0] == '%' && format[1] == ' ' && !format[2])
 return (-1);
@@ -26,8 +26,7 @@ ptr++;
 if (*ptr == '%')
 {
 count += _putchar('%');
-}
-while (get_flag(*ptr, &flags));
+} while (get_flag(*ptr, &flags));
 ptr++;
 func = get_print(*ptr);
 count += (func) ? func(list, &flags) : _printf("%%%c", *ptr);

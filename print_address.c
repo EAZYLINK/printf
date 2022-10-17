@@ -2,10 +2,9 @@
 
 /**
  * print_address - print address of variable
- * 
- * @l: variable list 
+ * @l: variable list
  * @print: parameter
- * Return: int 
+ * Return: int
  */
 int print_address(va_list l, flags_t *print)
 {
@@ -18,5 +17,5 @@ return (_puts("(nil)"));
 str = convert(p, 16, 1);
 count += _puts("0x");
 count += _puts(str);
-return (count);   
+return (count);
 }

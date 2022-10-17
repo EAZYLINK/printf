@@ -2,10 +2,9 @@
 
 /**
  * get_flag - gets the flag of format
- * 
  * @s: character
  * @print: parameter
- * Return: int 
+ * Return: int
  */
 int get_flag(char s, flags_t *print)
 {
@@ -30,10 +29,9 @@ return (i);
 
 /**
  * print_bigS - print bigS
- * 
- * @l: variable list 
+ * @l: variable list
  * @print: parameter
- * Return: int 
+ * Return: int
  */
 int print_bigS(va_list l, flags_t *print)
 {
@@ -62,10 +60,9 @@ return (count);
 
 /**
  * print_rev - print reversed string
- * 
- * @l: variable list 
+ * @l: variable list
  * @print: parameter
- * Return: int 
+ * Return: int
  */
 int print_rev(va_list l, flags_t *print)
 {
@@ -84,9 +81,9 @@ return (i);
 /**
  * print_rot13 - print rot13
  * 
- * @l: variable list 
+ * @l: variable list
  * @print: parameter
- * Return: int 
+ * Return: int
  */
 int print_rot13(va_list l, flags_t *print)
 {
@@ -113,10 +110,9 @@ return (j);
 
 /**
  * print_percent - print percent
- * 
- * @l: variable list 
+ * @l: variable list
  * @print: parameter
- * Return: int 
+ * Return: int
  */
 int print_percent(va_list l, flags_t *print)
 {
@@ -127,8 +123,7 @@ return (_putchar('%'));
 
 /**
  * get_print - Get the print object
- * 
- * @s: character format 
+ * @s: character format
  * Return: integer
  */
 int (*get_print(char s))(va_list, flags_t *)

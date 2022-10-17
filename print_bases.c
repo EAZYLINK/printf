@@ -2,10 +2,9 @@
 
 /**
  * print_hex - print hexadecimal number
- * 
- * @l: variable list 
+ * @l: variable list
  * @print: parameter
- * Return: int 
+ * Return: int
  */
 int print_hex(va_list l, flags_t *print)
 {
@@ -20,10 +19,9 @@ return (count);
 
 /**
  * print_hex_big - print big hexadecimal number
- * 
- * @l: variable list 
+ * @l: variable list
  * @print: parameter
- * Return: int 
+ * Return: int
  */
 int print_hex_big(va_list l, flags_t *print)
 {
@@ -38,10 +36,9 @@ return (count);
 
 /**
  * print_binary - print binary number
- * 
- * @l: variable list 
+ * @l: variable list
  * @print: parameter
- * Return: int 
+ * Return: int
  */
 int print_binary(va_list l, flags_t *print)
 {
@@ -53,10 +50,9 @@ return (_puts(str));
 
 /**
  * print_octal - print octal number
- * 
- * @l: variable list 
+ * @l: variable list
  * @print: parameter
- * Return: int 
+ * Return: int
  */
 int print_octal(va_list l, flags_t *print)
 {

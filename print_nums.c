@@ -2,10 +2,9 @@
 
 /**
  * print_int - print integer
- * 
  * @l: variable list 
  * @print: parameter
- * Return: int 
+ * Return: int
  */
 int print_int(va_list l, flags_t *print)
 {
@@ -23,10 +22,9 @@ return (result);
 
 /**
  * print_unsigned - print unsigned integer
- * 
- * @l: variable list 
+ * @l: variable list
  * @print: parameter
- * Return: int 
+ * Return: int
  */
 int print_unsigned(va_list l, flags_t *print)
 {
@@ -38,8 +36,8 @@ return (_puts(str));
 
 /**
  * print_num - print numbers
- * @n: parameter 
- * Return: int 
+ * @n: parameter
+ * Return: int
  */
 void print_num(int n)
 {
@@ -58,8 +56,8 @@ _putchar((num % 10) + '0');
 
 /**
  * count_digit - counts the number of digit
- * @i: integer 
- * Return: int 
+ * @i: integer
+ * Return: int
  */
 int count_digit(int i)
 {
