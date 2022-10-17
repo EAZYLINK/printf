@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * _printf.c - prints anything
+ * _printf - prints anything
  * @format: variable type
  * Return: returns integer
  */
