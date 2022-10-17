@@ -25,11 +25,11 @@ return (i);
 }
 
 /**
- * _print_char prints character
+ * print_char - print character
  * 
- * @param l 
- * @param print 
- * @return int 
+ * @l: variable list 
+ * @print: parameter
+ * Return: int 
  */
 
 int print_char(va_list l, flags_t *print)
@@ -42,9 +42,10 @@ return (1);
 
 /**
  * print_int - print integer
- * @param l 
- * @param print 
- * @return int 
+ * 
+ * @l: variable list 
+ * @print: parameter
+ * Return: int 
  */
 int print_int(va_list l, flags_t *print)
 {
@@ -64,9 +65,9 @@ return (result);
 /**
  * print_unsigned - print unsigned integer
  * 
- * @param l 
- * @param print 
- * @return int 
+ * @l: variable list 
+ * @print: parameter
+ * Return: int 
  */
 int print_unsigned(va_list l, flags_t *print)
 {
@@ -77,10 +78,11 @@ return (_puts(str));
 }
 
 /**
- * print_num - Prints number
+ * print_num - print numbers
  * 
- * @param n 
- * @return int 
+ * @l: variable list 
+ * @print: parameter
+ * Return: int 
  */
 void print_num(int n)
 {
@@ -98,10 +100,10 @@ _putchar((num % 10) + '0');
 }
 
 /**
- * count_digit - counts digit
+ * count_digit - counts the number of digit
  * 
- * @param i 
- * @return int 
+ * @n: integer 
+ * Return: int 
  */
 int count_digit(int i)
 {
@@ -121,9 +123,10 @@ return (d);
 
 /**
  * print_string - prints a string
- * @param l 
- * @param print 
- * @return int 
+ * 
+ * @l: variable list 
+ * @print: parameter
+ * Return: int 
  */
 int print_string(va_list l, flags_t *print)
 {
@@ -136,11 +139,11 @@ return (_puts(str));
 }
 
 /**
- * print_hex - prints hexadecimal number
+ * print_hex - print hexadecimal number
  * 
- * @param l 
- * @param print 
- * @return int 
+ * @l: variable list 
+ * @print: parameter
+ * Return: int 
  */
 int print_hex(va_list l, flags_t *print)
 {
@@ -156,9 +159,9 @@ return (count);
 /**
  * print_hex_big - print big hexadecimal number
  * 
- * @param l 
- * @param print 
- * @return int 
+ * @l: variable list 
+ * @print: parameter
+ * Return: int 
  */
 int print_hex_big(va_list l, flags_t *print)
 {
@@ -172,11 +175,11 @@ return (count);
 }
 
 /**
- * print_binary - print binary numbers
+ * print_binary - print binary number
  * 
- * @param l 
- * @param print 
- * @return int 
+ * @l: variable list 
+ * @print: parameter
+ * Return: int 
  */
 int print_binary(va_list l, flags_t *print)
 {
@@ -187,11 +190,11 @@ return (_puts(str));
 }
 
 /**
- * print_octal - prints octal numbers
+ * print_octal - print octal number
  * 
- * @param l 
- * @param print 
- * @return int 
+ * @l: variable list 
+ * @print: parameter
+ * Return: int 
  */
 int print_octal(va_list l, flags_t *print)
 {
@@ -205,11 +208,11 @@ return (count);
 }
 
 /**
- * print_address - prints an address
+ * print_address - print address of variable
  * 
- * @param l 
- * @param print 
- * @return int 
+ * @l: variable list 
+ * @print: parameter
+ * Return: int 
  */
 int print_address(va_list l, flags_t *print)
 {
@@ -251,11 +254,11 @@ return (ptr);
 }
 
 /**
- * get_flag - Get the flag object
+ * get_flag - gets the flag of format
  * 
- * @param s 
- * @param print 
- * @return int 
+ * @s: character
+ * @print: parameter
+ * Return: int 
  */
 int get_flag(char s, flags_t *print)
 {
@@ -279,11 +282,11 @@ return (i);
 }
 
 /**
- * print_bigS - prints big s
+ * print_bigS - print bigS
  * 
- * @param l 
- * @param print 
- * @return int 
+ * @l: variable list 
+ * @print: parameter
+ * Return: int 
  */
 int print_bigS(va_list l, flags_t *print)
 {
@@ -311,11 +314,11 @@ return (count);
 }
 
 /**
- * print_rev - prints reversed string
+ * print_rev - print reversed string
  * 
- * @param l 
- * @param print 
- * @return int 
+ * @l: variable list 
+ * @print: parameter
+ * Return: int 
  */
 int print_rev(va_list l, flags_t *print)
 {
@@ -332,11 +335,11 @@ return (i);
 }
 
 /**
- * print_rot13 - Print ROT13
+ * print_rot13 - print rot13
  * 
- * @param l 
- * @param print 
- * @return int 
+ * @l: variable list 
+ * @print: parameter
+ * Return: int 
  */
 int print_rot13(va_list l, flags_t *print)
 {
@@ -364,9 +367,9 @@ return (j);
 /**
  * print_percent - print percent
  * 
- * @param l 
- * @param print 
- * @return int 
+ * @l: variable list 
+ * @print: parameter
+ * Return: int 
  */
 int print_percent(va_list l, flags_t *print)
 {
@@ -378,8 +381,8 @@ return (_putchar('%'));
 /**
  * get_print - Get the print object
  * 
- * @param s 
- * @return int(*)(va_list, flags_t*) 
+ * @s: character format 
+ * @Return: int(*)(va_list, flags_t*) 
  */
 int(*get_print(char s))(va_list, flags_t *)
 {
