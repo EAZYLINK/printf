@@ -29,7 +29,7 @@ free_buffer(output);
  * @format: Character string to print - may contain directives.
  * @output: A buffer_t struct containing a buffer.
  * @args: A va_list of arguments.
- * int int - function pointer
+ * int: - function pointer
  * Return: The number of characters stored to output.
  */
 int run_printf(const char *format, va_list args, buffer_t *output)
