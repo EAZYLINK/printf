@@ -1,4 +1,4 @@
-#include "main.h";
+#include "main.h"
 
 /**
  * _printf.c - prints anything
@@ -8,66 +8,34 @@
 
 int _printf(const char *format, ...)
 {
+int (*func)(va_list, flags_t *);
+const char *ptr;
 va_list list;
-unsigned int i, char_num = 0;
-if (!format)
-return (-1);
+flags_t flags = {0, 0, 0};
+register int count = 0;
 va_start(list, format);
-for (i = 0; format[i] != '\0'; i++)
-{
-if (format[i] == '%')
-{
-if (format[i + 1] == '\0')
+if(!format || (format[0] == '%' && !format[1]))
 return (-1);
-else if(format[i + 1] == '%')
+if (format[0] == '%' && format[1] == ' ' && !format[2])
+return (-1);
+for (ptr = format; *ptr; ptr++)
 {
-_putchar('%');
-char_num++;
-i++;
+if (*ptr == '%')
+{
+ptr++;
+if (*ptr == '%')
+{
+count += _putchar('%');
 }
-else if (cmp_func(format[i + 1]) != NULL)
-{
-char_num += (cmp_func(format[i + 1]))(list);
-i++;
+while (get_flag(*ptr, &flags));
+ptr++;
+func = get_print(*ptr);
+count += (func) ? func(list, &flags) : _printf("%%%c", *ptr);
 }
 else
-{
-_putchar(format[i]);
-char_num++;
+count += _putchar(*ptr);
 }
-}
-else {
-    _putchar(format[i]);
-    char_num++;
-}
-}
+_putchar(-1);
 va_end(list);
-return (char_num);
-}
-
-/**
- * cmp_func - compares function
- * @a: character
- * Return: integer
- */
-
-int (*cmp_func(const char a))(va_list)
-{
-printer_t printf[] = {
-    {'c', print_char},
-    {'s', print_string},
-    {'d', print_int},
-    ('i', print_int),
-    {'\0', NULL}
-};
-
-int count;
-for (count = 0; printf[count].symbol != '\0'; count++)
-{
-if (printf[count].symbol == a)
-{
-return (printf[count].print);
-}
-}
-return (0);
+return (count);
 }
