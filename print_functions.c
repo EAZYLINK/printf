@@ -25,7 +25,7 @@ return (i);
 }
 
 /**
- * @brief prints character
+ * _print_char prints character
  * 
  * @param l 
  * @param print 
@@ -41,8 +41,7 @@ return (1);
 }
 
 /**
- * @brief print integer
- * 
+ * print_int - print integer
  * @param l 
  * @param print 
  * @return int 
@@ -63,7 +62,7 @@ return (result);
 }
 
 /**
- * @brief print unsigned integer
+ * print_unsigned - print unsigned integer
  * 
  * @param l 
  * @param print 
@@ -78,7 +77,7 @@ return (_puts(str));
 }
 
 /**
- * @brief Prints number
+ * print_num - Prints number
  * 
  * @param n 
  * @return int 
@@ -99,7 +98,7 @@ _putchar((num % 10) + '0');
 }
 
 /**
- * @brief counts digit
+ * count_digit - counts digit
  * 
  * @param i 
  * @return int 
@@ -137,7 +136,7 @@ return (_puts(str));
 }
 
 /**
- * @brief prints hexadecimal number
+ * print_hex - prints hexadecimal number
  * 
  * @param l 
  * @param print 
@@ -155,7 +154,7 @@ return (count);
 }
 
 /**
- * @brief print big hexadecimal number
+ * print_hex_big - print big hexadecimal number
  * 
  * @param l 
  * @param print 
@@ -173,7 +172,7 @@ return (count);
 }
 
 /**
- * @brief print binary numbers
+ * print_binary - print binary numbers
  * 
  * @param l 
  * @param print 
@@ -188,7 +187,7 @@ return (_puts(str));
 }
 
 /**
- * @brief prints octal numbers
+ * print_octal - prints octal numbers
  * 
  * @param l 
  * @param print 
@@ -206,7 +205,7 @@ return (count);
 }
 
 /**
- * @brief prints an address
+ * print_address - prints an address
  * 
  * @param l 
  * @param print 
@@ -280,7 +279,7 @@ return (i);
 }
 
 /**
- * @brief prints big s
+ * print_bigS - prints big s
  * 
  * @param l 
  * @param print 
@@ -312,7 +311,7 @@ return (count);
 }
 
 /**
- * @brief prints reversed string
+ * print_rev - prints reversed string
  * 
  * @param l 
  * @param print 
@@ -333,7 +332,7 @@ return (i);
 }
 
 /**
- * @brief Print ROT13
+ * print_rot13 - Print ROT13
  * 
  * @param l 
  * @param print 
@@ -363,7 +362,7 @@ return (j);
 }
 
 /**
- * @brief print percent
+ * print_percent - print percent
  * 
  * @param l 
  * @param print 
@@ -377,7 +376,7 @@ return (_putchar('%'));
 }
 
 /**
- * @brief Get the print object
+ * get_print - Get the print object
  * 
  * @param s 
  * @return int(*)(va_list, flags_t*) 
