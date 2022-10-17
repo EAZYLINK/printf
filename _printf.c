@@ -21,7 +21,7 @@ free_buffer(output);
  * @format: Character string to print - may contain directives.
  * @output: A buffer_t struct containing a buffer.
  * @args: A va_list of arguments.
- * int - integer function
+ * @int: integer function
  * Return: The number of characters stored to output.
  */
 int run_printf(const char *format, va_list args, buffer_t *output)
@@ -67,7 +67,6 @@ return (ret);
 /**
  * _printf - Outputs a formatted string.
  * @format: Character string to print - may contain directives.
- *
  * Return: The number of characters printed.
  */
 int _printf(const char *format, ...)
