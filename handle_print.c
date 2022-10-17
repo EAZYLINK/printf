@@ -160,7 +160,6 @@ return (value);
 /**
  * handle_specifiers - Matches a conversion specifier with
  *                     a corresponding conversion function.
- * @specifier: A pointer to a potential conversion specifier.
  * @char: character
  * @int: integer
  * Return: If a conversion function is matched - a pointer to the function.
