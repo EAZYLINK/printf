@@ -158,10 +158,10 @@ return (value);
 }
 
 /**
- * handle_specifiers - Matches a conversion specifier with
- *                     a corresponding conversion function.
+ * handle_specifiers - Matches a conversion specifier with a corresponding conversion function.
  * @char: character
  * @int: integer
+ * @specifier: specifier
  * Return: If a conversion function is matched - a pointer to the function.
  *         Otherwise - NULL.
  */
