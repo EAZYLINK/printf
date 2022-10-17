@@ -1,37 +1,80 @@
 #include "main.h"
 
 /**
- * print_int - print integer
- * @l: variable list
- * @print: parameter
- * Return: int
+ * print_int - Print int
+ * @types: Lista of arguments
+ * @buffer: Buffer array to handle print
+ * @flags:  Calculates active flags
+ * @width: get width.
+ * @precision: Precision specification
+ * @size: Size specifier
+ * Return: Number of chars printed
  */
-int print_int(va_list l, flags_t *print)
+int print_int(va_list types, char buffer[],
+int flags, int width, int precision, int size)
 {
-int num = va_arg(l, int);
-int result = count_digit(num);
-if (print->space == 1 && print->plus == 0 && num >= 0)
-result += _putchar(' ');
-if (print->plus == 1 && num >= 0)
-result += _putchar('+');
-if (num <= 0)
-result++;
-print_num(num);
-return (result);
+int i = BUFF_SIZE - 2;
+int is_negative = 0;
+long int n = va_arg(types, long int);
+unsigned long int num;
+
+n = convert_size_number(n, size);
+
+if (n == 0)
+buffer[i--] = '0';
+
+buffer[BUFF_SIZE - 1] = '\0';
+num = (unsigned long int)n;
+
+if (n < 0)
+{
+num = (unsigned long int)((-1) * n);
+is_negative = 1;
+}
+
+while (num > 0)
+{
+buffer[i--] = (num % 10) + '0';
+num /= 10;
+}
+
+i++;
+
+return (write_number(is_negative, i, buffer, flags, width, precision, size));
 }
 
 /**
- * print_unsigned - print unsigned integer
- * @l: variable list
- * @print: parameter
- * Return: int
+ * print_unsigned - Prints an unsigned number
+ * @types: List a of arguments
+ * @buffer: Buffer array to handle print
+ * @flags:  Calculates active flags
+ * @width: get width
+ * @precision: Precision specification
+ * @size: Size specifier
+ * Return: Number of chars printed.
  */
-int print_unsigned(va_list l, flags_t *print)
+int print_unsigned(va_list types, char buffer[],
+int flags, int width, int precision, int size)
 {
-unsigned int u = va_arg(l, unsigned int);
-char *str = convert(u, 10, 0);
-(void)print;
-return (_puts(str));
+int i = BUFF_SIZE - 2;
+unsigned long int num = va_arg(types, unsigned long int);
+
+num = convert_size_unsgnd(num, size);
+
+if (num == 0)
+buffer[i--] = '0';
+
+buffer[BUFF_SIZE - 1] = '\0';
+
+while (num > 0)
+{
+buffer[i--] = (num % 10) + '0';
+num /= 10;
+}
+
+i++;
+
+return (write_unsgnd(0, i, buffer, flags, width, precision, size));
 }
 
 /**
