@@ -1,32 +1,3 @@
-# _printf
-
-Hello, welcome to our first group project, we're replicating the printf() fucntion from the C Standard Library.
-
-
-## Introduction to the project
-
-printf (print formatted) in C, writes out a cstring to stdout (standard output). The provided cstring may contain format specifiers( beginning with % in the cstring).
-
-### Syntax
-
-`` int printf (const char* c-string, ...);``
-
-- Return Value: If the function successfully executes, it returns the total number of characters written to the standard output. If an error occurs, a negative number is returned.
-
-- Arguments: c-string is the string passed to the function. There can be additional arguments following c-string, if there exist format specifiers in the c-string, as discussed above.
-
-
-
-## <h3>Specifiers </h3>
-Specifier characters at the end define the type and the interpretation of its corresponding argument:
-
-| Specifier  | Output          |
-|------------|-----------------|
-| `c`        | character       |
-| `s`        | string          |
-| `d` or `i` | Signed integers |
-| `%`        | %               |
-
 ## Requirements
 
 ### General  
