@@ -11,7 +11,7 @@
 unsigned char handle_flags(const char *flag, char *index);
 unsigned char handle_length(const char *modifier, char *index);
 int handle_width(va_list args, const char *modifier, char *index);
-int handle_precision(const char *format, int *i, va_list list);
+int handle_precision(va_list args, const char *modifier, char *index);
 unsigned int (*handle_specifiers(const char *specifier))(va_list, buffer_t *,
 unsigned char, int, int, unsigned char);
 
@@ -114,43 +114,53 @@ return (value);
 }
 
 /**
- * handle_precision - Calculates the precision for printing
- * @format: Formatted string in which to print the arguments
- * @i: List of arguments to be printed
- * @list: list of arguments
+ * handle_precision - Matches a precision modifier with
+ *                    its corresponding value.
+ * @args: A va_list of arguments.
+ * @modifier: A pointer to a potential precision modifier.
+ * @index: An index counter for the original format string.
  *
- * Return: Precision.
+ * Return: If a precision modifier is matched - its value.
+ *         If the precision modifier is empty, zero, or negative - 0.
+ *         Otherwise - -1.
  */
-int handle_precision(const char *format, int *i, va_list list)
+int handle_precision(va_list args, const char *modifier, char *index)
 {
-int curr_i = *i + 1;
-int precision = -1;
+int value = 0;
 
-if (format[curr_i] != '.')
-return (precision);
+if (*modifier != '.')
+return (-1);
 
-precision = 0;
+modifier++;
+(*index)++;
 
-for (curr_i += 1; format[curr_i] != '\0'; curr_i++)
+if ((*modifier <= '0' || *modifier > '9') &&
+*modifier != '*')
 {
-if (is_digit(format[curr_i]))
-{
-    precision *= 10;
-    precision += format[curr_i] - '0';
-}
-else if (format[curr_i] == '*')
-{
-    curr_i++;
-    precision = va_arg(list, int);
-    break;
-}
-else
-    break;
+if (*modifier == '0')
+(*index)++;
+return (0);
 }
 
-*i = curr_i - 1;
+while ((*modifier >= '0' && *modifier <= '9') ||
+(*modifier == '*'))
+{
+(*index)++;
 
-return (precision);
+if (*modifier == '*')
+{
+value = va_arg(args, int);
+if (value <= 0)
+return (0);
+return (value);
+}
+
+value *= 10;
+value += (*modifier - '0');
+modifier++;
+}
+
+return (value);
 }
 
 /**
