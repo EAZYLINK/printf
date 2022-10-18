@@ -3,6 +3,8 @@
 void cleanup(va_list args, buffer_t *output);
 int run_printf(const char *format, va_list args, buffer_t *output);
 int _printf(const char *format, ...);
+unsigned int (*handle_specifiers(const char *specifier))(va_list, buffer_t *,
+unsigned char, int, int, unsigned char);
 
 /**
  * cleanup - Peforms cleanup operations for _printf.
@@ -18,10 +20,10 @@ free_buffer(output);
 
 /**
  * run_printf - Reads through the format string for _printf.
+ * handle_specifiers - handles all specifiers
  * @format: Character string to print - may contain directives.
  * @output: A buffer_t struct containing a buffer.
  * @args: A va_list of arguments.
- * handle_specifiers - handles all specifiers
  * Return: The number of characters stored to output.
  */
 int run_printf(const char *format, va_list args, buffer_t *output)
