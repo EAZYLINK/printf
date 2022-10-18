@@ -38,8 +38,8 @@ if (*(format + i) == '%')
 tmp = 0;
 flags = handle_flags(format + i + 1, &tmp);
 wid = handle_width(args, format + i + tmp + 1, &tmp);
-prec = handle_precision(args, format + i + tmp + 1,
-&tmp);
+prec = handle_precision(&tmp, format + i + tmp + 1,
+args);
 len = handle_length(format + i + tmp + 1, &tmp);
 
 f = handle_specifiers(format + i + tmp + 1);
