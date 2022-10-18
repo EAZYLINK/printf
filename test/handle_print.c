@@ -1,5 +1,13 @@
 #include "main.h"
-
+/**
+ * handle_specifiers - specifies type of variable
+ * handle_length - handles length
+ * handle_flags - handles flags
+ * handle_precision - handles precision
+ * @flag: flags
+ * @index: index
+ * Return: char
+ */
 unsigned char handle_flags(const char *flag, char *index);
 unsigned char handle_length(const char *modifier, char *index);
 int handle_width(va_list args, const char *modifier, char *index);
@@ -11,9 +19,7 @@ unsigned char, int, int, unsigned char);
  * handle_flags - Matches flags with corresponding values.
  * @flag: A pointer to a potential string of flags.
  * @index: An index counter for the original format string.
- *
- * Return: If flag characters are matched - a corresponding value.
- *         Otherwise - 0.
+ * Return: character
  */
 unsigned char handle_flags(const char *flag, char *index)
 {
@@ -36,9 +42,9 @@ if (flag[i] == flags[j].flag)
 {
 (*index)++;
 if (ret == 0)
-    ret = flags[j].value;
+ret = flags[j].value;
 else
-    ret |= flags[j].value;
+ret |= flags[j].value;
 break;
 }
 }
@@ -158,12 +164,12 @@ return (value);
 }
 
 /**
- * handle_specifiers - Matches a conversion specifier with
- *                     a corresponding conversion function.
- * @specifier: A pointer to a potential conversion specifier.
- *
+ * handle_specifiers - Matches a conversion specifier
+ * with a corresponding conversion function.
+ * @char: character
  * Return: If a conversion function is matched - a pointer to the function.
  *         Otherwise - NULL.
+ * @int: integer
  */
 unsigned int (*handle_specifiers(const char *specifier))(va_list, buffer_t *,
 unsigned char, int, int, unsigned char)
