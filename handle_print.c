@@ -134,7 +134,7 @@ return (-1);
 modifier++;
 (*index)++;
 
-if ((*modifier <= '0' || *modifier > '9') &&
+if ((*modifier <= '0' || *modifier >= '9') &&
 *modifier != '*')
 {
 if (*modifier == '0')
