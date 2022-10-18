@@ -47,7 +47,8 @@ len = handle_length(format + i + tmp + 1, &tmp);
 if (handle_specifiers(format + i + tmp + 1) != NULL)
 {
 i += tmp + 1;
-ret += handle_specifiers(format + i + tmp + 1)(args, output, flags, wid, prec, len);
+ret += handle_specifiers(format + i + tmp + 1)(args,
+ output, flags, wid, prec, len);
 continue;
 }
 else if (*(format + i + tmp + 1) == '\0')
