@@ -96,7 +96,6 @@ int handle_width(va_list args, const char *modifier, char *index);
 int handle_precision(va_list args, const char *modifier, char *index);
 unsigned int (*handle_specifiers(const char *specifier))(va_list, buffer_t *,
 unsigned char, int, int, unsigned char);
-int get_flags(const char *format, int *i);
 
 /* Modifiers */
 unsigned int print_width(buffer_t *output, unsigned int printed,
