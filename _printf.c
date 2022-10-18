@@ -29,7 +29,7 @@ int i, wid, prec, ret = 0;
 char tmp;
 unsigned char flags, len;
 unsigned int (*f)(va_list, buffer_t *,
-unsigned char flags, int wid, int wid, unsigned char len);
+unsigned char flags, int wid, int prec, unsigned char len);
 for (i = 0; *(format + i); i++)
 {
 len = 0;
