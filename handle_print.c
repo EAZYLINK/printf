@@ -106,10 +106,8 @@ return (value);
 }
 
 value *= 10;
-value += (*modifier - '0');
-modifier++;
+value += (*modifier++ - '0');
 }
-
 return (value);
 }
 
