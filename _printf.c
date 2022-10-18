@@ -28,7 +28,8 @@ int run_printf(const char *format, va_list args, buffer_t *output)
 int i, wid, prec, ret = 0;
 char tmp;
 unsigned char flags, len;
-
+unsigned int (*handle_specifiers(const char *specifier))(va_list, buffer_t *,
+unsigned char, int, int, unsigned char);
 for (i = 0; *(format + i); i++)
 {
 len = 0;
@@ -40,13 +41,10 @@ wid = handle_width(args, format + i + tmp + 1, &tmp);
 prec = handle_precision(args, format + i + tmp + 1,
 &tmp);
 len = handle_length(format + i + tmp + 1, &tmp);
-unsigned int (*f)(va_list, buffer_t *,
-unsigned char, int, int, unsigned char);
-f = handle_specifiers(format + i + tmp + 1);
-if (f != NULL)
+if (handle_specifiers != NULL)
 {
 i += tmp + 1;
-ret += f(args, output, flags, wid, prec, len);
+ret += handle_specifiers(format + i + tmp + 1)(args, output, flags, wid, prec, len);
 continue;
 }
 else if (*(format + i + tmp + 1) == '\0')
