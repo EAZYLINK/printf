@@ -18,13 +18,6 @@
 #define ZERO_FLAG ((flags >> 3) & 1)
 #define NEG_FLAG ((flags >> 4) & 1)
 
-/* FLAGS */
-#define F_MINUS 1
-#define F_PLUS 2
-#define F_ZERO 4
-#define F_HASH 8
-#define F_SPACE 16
-
 /* Length Modifier Macros */
 #define SHORT 1
 #define LONG 2
