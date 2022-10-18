@@ -21,6 +21,7 @@ free_buffer(output);
  * @format: Character string to print - may contain directives.
  * @output: A buffer_t struct containing a buffer.
  * @args: A va_list of arguments.
+ * handle_specifiers - handles all specifiers
  * Return: The number of characters stored to output.
  */
 int run_printf(const char *format, va_list args, buffer_t *output)
@@ -41,7 +42,7 @@ wid = handle_width(args, format + i + tmp + 1, &tmp);
 prec = handle_precision(args, format + i + tmp + 1,
 &tmp);
 len = handle_length(format + i + tmp + 1, &tmp);
-if (handle_specifiers != NULL)
+if (handle_specifiers(format + i + tmp + 1) != NULL)
 {
 i += tmp + 1;
 ret += handle_specifiers(format + i + tmp + 1)(args, output, flags, wid, prec, len);
