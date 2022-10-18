@@ -18,12 +18,6 @@
 #define ZERO_FLAG ((flags >> 3) & 1)
 #define NEG_FLAG ((flags >> 4) & 1)
 
-/* FLAGS */
-#define F_MINUS 1
-#define F_PLUS 2
-#define F_ZERO 4
-#define F_HASH 8
-#define F_SPACE 16
 
 /* Length Modifier Macros */
 #define SHORT 1
@@ -103,7 +97,6 @@ int handle_width(va_list args, const char *modifier, char *index);
 int handle_precision(va_list args, const char *modifier, char *index);
 unsigned int (*handle_specifiers(const char *specifier))(va_list, buffer_t *,
 unsigned char, int, int, unsigned char);
-int get_flags(const char *format, int *i);
 
 /* Modifiers */
 unsigned int print_width(buffer_t *output, unsigned int printed,
