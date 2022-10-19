@@ -131,7 +131,7 @@ int value = 0;
 if (*modifier != '.')
 return (-1);
 
-*modifier++;
+modifier++;
 (*index)++;
 
 if ((*modifier <= '0' || *modifier > '9') &&
