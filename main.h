@@ -7,11 +7,11 @@
 #include <unistd.h>
 
 /* Flag Modifier Macros */
-#define PLUS 2
-#define SPACE 16
-#define HASH 8
-#define ZERO 4
-#define NEG 1
+#define PLUS 1
+#define SPACE 2
+#define HASH 4
+#define ZERO 8
+#define NEG 16
 #define PLUS_FLAG (flags & 1)
 #define SPACE_FLAG ((flags >> 1) & 1)
 #define HASH_FLAG ((flags >> 2) & 1)
