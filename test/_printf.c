@@ -40,10 +40,10 @@ wid = handle_width(args, format + i + tmp + 1, &tmp);
 prec = handle_precision(args, format + i + tmp + 1,
 &tmp);
 len = handle_length(format + i + tmp + 1, &tmp);
-if (handle_specifiers(format + i + tmp + 1) != NULL)
+if ((*handle_specifiers(format + i + tmp + 1)) != NULL)
 {
 i += tmp + 1;
-ret += handle_specifiers(format + i + tmp + 1)(args,
+ret += (*handle_specifiers(format + i + tmp + 1))(args,
 output, flags, wid, prec, len);
 continue;
 }
