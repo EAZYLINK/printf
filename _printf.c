@@ -6,6 +6,8 @@ int _printf(const char *format, ...);
 
 /**
  * int - function pointer
+ * @f: function pointer
+ * Return: integer
  */
 unsigned int (*f)(va_list, buffer_t *,
 unsigned char, int, int, unsigned char);
