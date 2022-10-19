@@ -34,7 +34,7 @@ free_buffer(output);
 int run_printf(const char *format, va_list args, buffer_t *output)
 {
 int i, wid, prec, ret = 0;
-char tmp;
+int tmp;
 unsigned char flags, len;
 for (i = 0; *(format + i); i++)
 {

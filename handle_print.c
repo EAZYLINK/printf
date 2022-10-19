@@ -11,7 +11,7 @@
 unsigned char handle_flags(const char *flag, char *index);
 unsigned char handle_length(const char *modifier, char *index);
 int handle_width(va_list args, const char *modifier, char *index);
-int handle_precision(va_list args, const char *modifier, char *index);
+int handle_precision(va_list args, const char *format, int *i);
 unsigned int (*handle_specifiers(const char *specifier))(va_list, buffer_t *,
 unsigned char, int, int, unsigned char);
 
@@ -117,50 +117,43 @@ return (value);
  * handle_precision - Matches a precision modifier with
  *                    its corresponding value.
  * @args: A va_list of arguments.
- * @modifier: A pointer to a potential precision modifier.
- * @index: An index counter for the original format string.
+ * @format: A pointer to a potential precision modifier.
+ * @i: An index counter for the original format string.
  *
  * Return: If a precision modifier is matched - its value.
  *         If the precision modifier is empty, zero, or negative - 0.
  *         Otherwise - -1.
  */
-int handle_precision(va_list args, const char *modifier, char *index)
+int handle_precision(va_list args, const char *format, int *i)
 {
-int value = 0;
+int curr_i = *i + 1;
+int precision = -1;
 
-if (*modifier != '.')
-return (-1);
+if (format[curr_i] != '.')
+return (precision);
 
-modifier++;
-(*index)++;
+precision = 0;
 
-if ((*modifier <= '0' || *modifier > '9') &&
-*modifier != '*')
+for (curr_i += 1; format[curr_i] != '\0'; curr_i++)
 {
-if (*modifier == '0')
-(*index)++;
-return (0);
+if (is_digit(format[curr_i]))
+{
+    precision *= 10;
+    precision += format[curr_i] - '0';
+}
+else if (format[curr_i] == '*')
+{
+    curr_i++;
+    precision = va_arg(args, int);
+    break;
+}
+else
+    break;
 }
 
-while ((*modifier >= '0' && *modifier <= '9') ||
-(*modifier == '*'))
-{
-(*index)++;
+*i = curr_i - 1;
 
-if (*modifier == '*')
-{
-value = va_arg(args, int);
-if (value <= 0)
-return (0);
-return (value);
-}
-
-value *= 10;
-value += (*modifier - '0');
-modifier++;
-}
-
-return (value);
+return (precision);
 }
 
 /**
