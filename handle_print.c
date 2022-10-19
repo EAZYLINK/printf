@@ -93,7 +93,7 @@ int handle_width(va_list args, const char *modifier, char *index)
 {
 int value = 0;
 
-while ((*modifier >= '0' && *modifier <= '9') || (*modifier == '*'))
+while ((*modifier >= 0 && *modifier <= 9) || (*modifier == '*'))
 {
 (*index)++;
 
@@ -106,7 +106,7 @@ return (value);
 }
 
 value *= 10;
-value += (*modifier - '0');
+value += (*modifier - 0);
 modifier++;
 }
 
