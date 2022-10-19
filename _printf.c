@@ -3,6 +3,11 @@
 void cleanup(va_list args, buffer_t *output);
 int run_printf(const char *format, va_list args, buffer_t *output);
 int _printf(const char *format, ...);
+
+/**
+ * @f: function pointer
+ * int: parameter
+ */
 unsigned int (*f)(va_list, buffer_t *,
 unsigned char, int, int, unsigned char);
 
